@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escolares</title>
-    <link rel="stylesheet" href="estilo.css">
-    <link rel="stylesheet" href="style/index.css">
-    <script type="module" src="./js/index.js"></script>
+    <link rel="stylesheet" href="/Pagina-escolar-main/Pagina-escolar-master/style/estilo.css">
+    <link rel="stylesheet" href="/Pagina-escolar-main/Pagina-escolar-master/style/index.css">
+    <script type="module" src="/Pagina-escolar-main/Pagina-escolar-master/js/index.js"></script>
 </head>
+
 <body>
     <div class="paguina principal activa" id="pag1">
       
@@ -15,12 +16,12 @@
             <button class="botoninicio" onclick="cambiainiciar()" style="background:none;border:none;color:#222;font-size:1.3em;font-family:'Montserrat',Arial,sans-serif;font-weight:bold;padding:0;margin:0;box-shadow:none;">Iniciar sesión</button>
       </div>
 
-
+      <div id="notificacion" style="display:none;"></div>
       
  <!-- CAMBIO PAGINA PRINCIPAL - ABRIR LINK DE LA PAGINA OFICIAL -->
       <h1>
           <a href="https://upgop.edu.mx" target="_blank" rel="noopener noreferrer">
-              <img src="logounip1.png" alt="logounip1" class="title_image">
+              <img src="/Pagina-escolar-main/Pagina-escolar-master/logounip1.png" alt="logounip1" class="title_image">
           </a>
       </h1>
 
@@ -37,8 +38,8 @@
         </div>
 
         <p>
-            <img src="tiidlogo.png" alt="tiidlogo" class="tiid1">
-            <img src="administracionuni.jpeg" alt="administracionuni" class="admin">
+            <img src="/Pagina-escolar-main/Pagina-escolar-master/tiidlogo.png" alt="tiidlogo" class="tiid1">
+            <img src="/Pagina-escolar-main/Pagina-escolar-master/administracionuni.jpeg" alt="administracionuni" class="admin">
         </p>
 
         <div class="contactoycondiciones">
@@ -63,7 +64,7 @@
         </button>
       </div>
       <div class="logo-section">
-        <img src= "./style/logo UPG.png" alt="Logo UPGP">
+        <img src= "/Pagina-escolar-main/Pagina-escolar-master/logo UPG.png" alt="Logo UPGP">
         <h1>Universidad Politécnica<br>Gómez Palacio</h1>
         <div class="slogan">LIDERAZGO E INNOVACIÓN CON ESPÍRITU HUMANO</div>
         <div class="access-links">
@@ -147,21 +148,7 @@
 
     <!-- Caja de notificación simple -->
     <div id="notificacion" style="display:none;"></div>
-
-    <script type="module" src="./js/index.js"></script>
     </div>
-
-    <script>
-        function cambiainiciar(){
-            document.getElementById("pag1").classList.remove("activa");
-            document.getElementById("pag2").classList.add("activa");
-        }
-        function cambiaregresar(){
-            document.getElementById("pag2").classList.remove("activa");
-            document.getElementById("pag1").classList.add("activa");
-        }
-    </script>
-
     <!-- Modal de Términos y Condiciones -->
 <!-- Modal Original -->
 <div id="modalTerminos" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; 
@@ -262,11 +249,12 @@
 
 
 <!-- 🟢 Frame SuperUsuario (oculto por defecto) -->
-<div id="frameSuperUsuario" style="display: none;" class="superusuario-menu">
-  <button onclick="regresarAlLogin()" style="background:none; border:none; font-size:1.5rem; font-weight:bold; cursor:pointer; float: right;">✖</button>
-  <h2 style="text-align:center; margin-top: 1rem;">Menú S.Usuario</h2>
-  <div style="display:flex; flex-direction:column; gap: 10px; align-items: center; padding: 1rem;">
-    <button>Gestión de Carreras</button>
+<div class="superusuario-container" id="frameSuperUsuario" style="display: none;">
+  <div class="superusuario-menu">
+    <button class="close-btn" onclick="regresarAlLogin()">✖</button>
+    <h2>Menú S.Usuario</h2>
+    <button onclick="window.location.href='gestion-carreras.html'">Gestión de Carreras</button>
+
     <button>Gestión de Directivos</button>
     <button>Gestión de Docentes</button>
     <button>Gestión de Alumnos</button>
@@ -274,6 +262,48 @@
     <button>Últimas Conexiones</button>
   </div>
 </div>
+<!-- 🟢 menu -->
+
+
+
+  <!-- Modal de Contacto -->
+<div id="modalContacto" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; 
+    background-color: rgba(0,0,0,0.4); justify-content:center; align-items:center; z-index: 1002;">
+  <div style="background:#B0E0E6; width:85%; max-width:750px; max-height:80vh; 
+      font-family: Arial, sans-serif; box-shadow: 0 8px 25px rgba(0,0,0,0.4); border: 3px solid #87CEEB;">
+    
+    <div style="background:#B0E0E6; padding:15px 25px; display:flex; justify-content:flex-end; align-items:flex-start; border-bottom:2px solid #87CEEB;">
+      <button id="btnCerrarContacto" style="background:none; border:none; font-size:2.2em; font-weight:bold; 
+          color:#000; cursor:pointer; padding:0; width:35px; height:35px;">&times;</button>
+    </div>
+    
+    <div style="padding:40px 50px; background:#B0E0E6; display:flex; justify-content:space-between; align-items:flex-start; gap:50px;">
+      <div style="flex:1; color:#000;">
+        <h3 style="margin:0 0 10px 0; font-size:1.4em; font-weight:bold; text-align:center; font-family:Arial, sans-serif;">Consultas Generales</h3>
+        <p style="margin:0 0 30px 0; font-size:1.1em; text-align:center; font-family:Arial, sans-serif;">support@unipoli.com</p>
+        
+        <h3 style="margin:0 0 10px 0; font-size:1.4em; font-weight:bold; text-align:center; font-family:Arial, sans-serif;">Oficina Principal</h3>
+        <p style="margin:0 0 30px 0; font-size:1.1em; text-align:center; font-family:Arial, sans-serif;">(432) 201-701<br>
+        Horario de atención: Lunes a Viernes<br>
+        de 8:00 a.m a 4:00 p.m</p>
+        
+        <h3 style="margin:0 0 10px 0; font-size:1.4em; font-weight:bold; text-align:center; font-family:Arial, sans-serif;">Direccion</h3>
+        <p style="margin:0 0 30px 0; font-size:1.1em; text-align:center; font-family:Arial, sans-serif;">Unipoli Vergel</p>
+      </div>
+      
+      <div style="flex:1; display:flex; flex-direction:column; gap:20px;">
+        <input type="email" id="inputEmailContacto" placeholder="Correo electrónico" 
+            style="width:100%; padding:12px 15px; border:none; border-radius:8px; background:#fff; font-size:1em; font-family:Arial, sans-serif; box-sizing:border-box;">
+        <textarea id="inputConsulta" placeholder="Consulta" 
+            style="width:100%; padding:12px 15px; border:none; border-radius:8px; background:#fff; font-size:1em; font-family:Arial, sans-serif; min-height:100px; resize:vertical; box-sizing:border-box;"></textarea>
+        <button id="btnEnviarContacto" style="background:#8A2BE2; color:white; border:none; border-radius:8px; 
+            padding:12px 30px; font-size:1.1em; font-weight:bold; cursor:pointer; font-family:Arial, sans-serif; align-self:center;">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- enlases entre paguinas -->
 <!-- ... Aquí va todo tu HTML ...  y lo de abajo es para la X y regresar al login-->
 
 <script>
@@ -282,8 +312,22 @@ function regresarAlLogin() {
     document.getElementById('loginFrame').style.display = 'block';
 }
 </script>
+ <script>
+        function cambiainiciar(){
+            document.getElementById("pag1").classList.remove("activa");
+            document.getElementById("pag2").classList.add("activa");
+        }
+        function cambiaregresar(){
+            document.getElementById("pag2").classList.remove("activa");
+            document.getElementById("pag1").classList.add("activa");
+        }
+    </script>
+<script src="/Pagina-escolar-main/Pagina-escolar-master/js/index.js"></script>
+
+
 </body>
 </html>
+
 
 
 

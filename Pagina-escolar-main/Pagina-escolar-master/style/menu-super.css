@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Superusuario</title>
-    <style>
-        html, body {
+html, body {
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -44,19 +37,3 @@
             font-weight: bold;
             cursor: pointer;
         }
-    </style>
-</head>
-<body>
-    <div class="close-button" onclick="window.location.href='index.html'">&times;</div>
-    <div class="menu-container">
-        <h2>Menú S.Usuario</h2>
-        <button class="menu-button" onclick="window.location.href='gestion-carreras.html'">Gestión de Carreras</button>
-        <button class="menu-button">Gestión de Directivos</button>
-        <button class="menu-button">Gestión de Docentes</button>
-        <button class="menu-button">Gestión de Alumnos</button>
-        <button class="menu-button">Calificaciones</button>
-        <button class="menu-button">Últimas Conexiones</button>
-    </div>
-</body>
-</html>
-
