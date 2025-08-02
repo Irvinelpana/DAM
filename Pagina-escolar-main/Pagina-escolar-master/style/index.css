@@ -365,3 +365,15 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+
+
+/* Modal responsive - opcional */
+@media (max-width: 600px) {
+  #modalAgregarCarrera div {
+    width: 95% !important;
+    padding: 20px !important;
+  }
+  #modalAgregarCarrera h2 {
+    font-size: 1.3rem;
+  }
+}

@@ -131,7 +131,8 @@
             <div class="career-item">Lic. En comercio internacional y aduanas.</div>
         </div>
         <div class="actions">
-            <button class="action-button">Agregar Carrera</button>
+            <button id="btnAgregarCarrera" class="action-button">Agregar Carrera</button>
+
             <button class="action-button">Editar Carrera</button>
         </div>
     </div>
@@ -147,6 +148,286 @@
     <button onclick="cerrarModal()">Salir</button>
   </div>
 </div>
+
+
+<script>
+
+  btnAgregar.addEventListener('click', () => {
+    modalCarrera.style.display = 'flex';
+  });
+
+  btnCerrar.addEventListener('click', () => {
+    modalCarrera.style.display = 'none';
+    limpiarCamposCarrera();
+  });
+
+  function limpiarCamposCarrera() {
+    document.getElementById('inputNombreCarrera').value = '';
+    document.getElementById('inputJefeCarrera').value = '';
+    document.getElementById('inputUbicacionCarrera').value = '';
+    document.getElementById('inputDescripcionCarrera').value = '';
+  }
+
+btnGuardar.addEventListener('click', () => {
+  const nombre = document.getElementById('inputNombreCarrera').value.trim();
+
+  if (nombre === '') {
+    alert("Debes ingresar un nombre de carrera.");
+    return;
+  }
+
+  // Crear nuevo div
+  const nuevaCarrera = document.createElement('div');
+  nuevaCarrera.className = 'career-item';
+  nuevaCarrera.textContent = nombre;
+
+  // Agregar al contenedor
+  const contenedorCarreras = document.querySelector('.career-list');
+  contenedorCarreras.appendChild(nuevaCarrera);
+  activarClicksCarreras();
+
+
+  // Guardar en Local Storage
+  guardarCarreraEnLocalStorage(nombre);
+
+  // Cerrar modal y limpiar
+  modalCarrera.style.display = 'none';
+  limpiarCamposCarrera();
+});
+
+
+function guardarCarreraEnLocalStorage(nombreCarrera) {
+  let carreras = JSON.parse(localStorage.getItem('carreras')) || [];
+  carreras.push(nombreCarrera);
+  localStorage.setItem('carreras', JSON.stringify(carreras));
+}
+
+function cargarCarrerasDesdeLocalStorage() {
+  let carreras = JSON.parse(localStorage.getItem('carreras')) || [];
+  const contenedorCarreras = document.querySelector('.career-list');
+
+  carreras.forEach(nombre => {
+    const nuevaCarrera = document.createElement('div');
+    nuevaCarrera.className = 'career-item';
+    nuevaCarrera.textContent = nombre;
+    contenedorCarreras.appendChild(nuevaCarrera);
+  });
+}
+
+// Ejecutar al cargar la página
+cargarCarrerasDesdeLocalStorage();
+
+
+
+</script>
+
+<!-- Modal para Ver Datos de la Carrera -->
+<div id="modalVerCarrera" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+    background-color: rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:#4aa7c8; border-radius:15px; width:90%; max-width:600px; padding:30px;
+      font-family:'Montserrat', Arial, sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.3); text-align:left;">
+    
+    <h2 id="verNombreCarrera" style="text-align:center; margin-bottom:20px; color:#000; font-weight:bold;">Nombre de la carrera</h2>
+
+    <p><strong>Jefe de carrera encargado:</strong></p>
+    <div id="verJefeCarrera" style="background:#e0e0e0; padding:10px; border-radius:8px; margin-bottom:15px;"></div>
+
+    <p><strong>Ubicación:</strong></p>
+    <div id="verUbicacionCarrera" style="background:#e0e0e0; padding:10px; border-radius:8px; margin-bottom:15px;"></div>
+
+    <p><strong>Descripción:</strong></p>
+    <div id="verDescripcionCarrera" style="background:#e0e0e0; padding:15px; border-radius:8px; font-size:1rem; text-align:justify; min-height:120px; line-height:1.4;"></div>
+
+    <div style="display:flex; justify-content:center; margin-top:20px;">
+      <button id="btnCerrarModalVerCarrera" style="background: linear-gradient(to right, #b2ebf2, #0288d1); color:white; padding:12px 20px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Salir</button>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+window.addEventListener('DOMContentLoaded', () => {
+  const modalVerCarrera = document.getElementById('modalVerCarrera');
+  modalVerCarrera.style.display = 'none'; // Ocultarlo por si acaso
+});
+
+// Referencias al modal
+const modalVerCarrera = document.getElementById('modalVerCarrera');
+const inputVerNombre = document.getElementById('verNombreCarrera');
+const btnCerrarVerCarrera = document.getElementById('btnCerrarModalVerCarrera');
+
+// Función para mostrar datos al hacer clic en una carrera
+function activarClicksCarreras() {
+  const carreras = document.querySelectorAll('.career-item');
+
+  carreras.forEach(carrera => {
+    carrera.addEventListener('click', () => {
+      const nombre = carrera.textContent.trim();
+
+      // Mostrar nombre como título
+      document.getElementById('verNombreCarrera').textContent = nombre;
+
+      // Si es la carrera especial
+      if (nombre === 'Ing. Tecnologías de la información.') {
+        document.getElementById('verJefeCarrera').textContent = 'Luis Garza';
+        document.getElementById('verUbicacionCarrera').textContent = 'Edificio C';
+        document.getElementById('verDescripcionCarrera').textContent =
+          'Al ingresar a la carrera de Ingeniería de tecnologías de la información e innovación digital el estudiante podrá: Desarrollará conocimientos básicos de computación y ciencias exactas. También se busca que los aspirantes tengan habilidades de análisis, síntesis, razonamiento lógico y comunicación.';
+      } else {
+        // Otras carreras = vacías por ahora
+        document.getElementById('verJefeCarrera').textContent = '';
+        document.getElementById('verUbicacionCarrera').textContent = '';
+        document.getElementById('verDescripcionCarrera').textContent = '';
+      }
+
+      modalVerCarrera.style.display = 'flex';
+    });
+  });
+}
+
+// Llamar a la función después de cargar las carreras desde localStorage
+cargarCarrerasDesdeLocalStorage();
+activarClicksCarreras();
+
+// Cerrar el modal al presionar "Salir"
+btnCerrarVerCarrera.addEventListener('click', () => {
+  modalVerCarrera.style.display = 'none';
+});
+</script>
+
+<div class="actions">
+  <button id="btnAgregarCarrera" class="action-button">Agregar Carrera</button>
+</div>
+
+<!-- Modal: Agregar Carrera -->
+<div id="modalAgregarCarrera" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+    background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:#4aa7c8; border-radius:15px; width:90%; max-width:600px; padding:30px;
+      font-family:'Montserrat', Arial, sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.3); text-align:left;">
+    <h2 style="text-align:center; margin-bottom:20px; color:#000;">Agregar carrera nueva</h2>
+
+    <input id="inputNombreCarrera" type="text" placeholder="Nombre de la carrera." style="width:100%; padding:12px; margin-bottom:15px; border:none; border-radius:8px; background:#e0e0e0; font-size:1rem;">
+    <input id="inputJefeCarrera" type="text" placeholder="Jefe de carrera encargado." style="width:100%; padding:12px; margin-bottom:15px; border:none; border-radius:8px; background:#e0e0e0; font-size:1rem;">
+    <input id="inputUbicacionCarrera" type="text" placeholder="Ubicación dentro del plantel universitario." style="width:100%; padding:12px; margin-bottom:15px; border:none; border-radius:8px; background:#e0e0e0; font-size:1rem;">
+    <textarea id="inputDescripcionCarrera" placeholder="Descripción de la carrera." style="width:100%; padding:12px; height:100px; border:none; border-radius:8px; background:#e0e0e0; font-size:1rem;"></textarea>
+
+    <div style="display:flex; justify-content:space-around; margin-top:20px;">
+      <button id="btnGuardarCarrera" style="background: linear-gradient(to right, #b2ebf2, #0288d1); color:white; padding:12px 20px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Guardar carrera</button>
+      <button id="btnCerrarModalCarrera" style="background: linear-gradient(to right, #b2ebf2, #0288d1); color:white; padding:12px 20px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Salir</button>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBD_gTYWxZX5g_Dftn_HWgyPQDw3FVScQk",
+    authDomain: "b-tiid---idia.firebaseapp.com",
+    projectId: "b-tiid---idia",
+    storageBucket: "b-tiid---idia.appspot.com",
+    messagingSenderId: "726121139996",
+    appId: "1:726121139996:web:8f6d99f7286c17e581f4d9",
+    measurementId: "G-W3QN1MSPLC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const btnAgregar = document.getElementById('btnAgregarCarrera');
+  const btnCerrar = document.getElementById('btnCerrarModalCarrera');
+  const btnGuardar = document.getElementById('btnGuardarCarrera');
+  const modalCarrera = document.getElementById('modalAgregarCarrera');
+  const contenedorCarreras = document.querySelector('.career-list');
+
+  // Abrir y cerrar modal
+  btnAgregar.addEventListener('click', () => modalCarrera.style.display = 'flex');
+  btnCerrar.addEventListener('click', () => {
+    modalCarrera.style.display = 'none';
+    limpiarCampos();
+  });
+
+  function limpiarCampos() {
+    document.getElementById('inputNombreCarrera').value = '';
+    document.getElementById('inputJefeCarrera').value = '';
+    document.getElementById('inputUbicacionCarrera').value = '';
+    document.getElementById('inputDescripcionCarrera').value = '';
+  }
+
+  // Guardar en Firebase
+  btnGuardar.addEventListener('click', async () => {
+    const nombre = document.getElementById('inputNombreCarrera').value.trim();
+    const jefe = document.getElementById('inputJefeCarrera').value.trim();
+    const ubicacion = document.getElementById('inputUbicacionCarrera').value.trim();
+    const descripcion = document.getElementById('inputDescripcionCarrera').value.trim();
+
+    if (nombre === '') {
+      alert("Debes ingresar el nombre de la carrera.");
+      return;
+    }
+
+    const carreraObj = { nombre, jefe, ubicacion, descripcion };
+
+    try {
+      await addDoc(collection(db, "CARRERAS - Super Usuario"), carreraObj);
+      alert("¡Carrera guardada!");
+
+      // Mostrar nueva carrera
+      agregarCarreraVisual(carreraObj);
+      modalCarrera.style.display = 'none';
+      limpiarCampos();
+    } catch (error) {
+      alert("Error al guardar en Firebase: " + error.message);
+    }
+  });
+
+  // Mostrar carrera en la página
+  function agregarCarreraVisual(carrera) {
+    const div = document.createElement('div');
+    div.className = 'career-item';
+    div.textContent = carrera.nombre;
+    div.addEventListener('click', () => mostrarDatosCarrera(carrera));
+    contenedorCarreras.appendChild(div);
+  }
+
+  // Mostrar datos en un alert (puedes usar tu modal si prefieres)
+// Mostrar los datos en el modal (NO alert)
+function mostrarDatosCarrera(carrera) {
+  document.getElementById('verNombreCarrera').textContent = carrera.nombre;
+  document.getElementById('verJefeCarrera').textContent = carrera.jefe;
+  document.getElementById('verUbicacionCarrera').textContent = carrera.ubicacion;
+  document.getElementById('verDescripcionCarrera').textContent = carrera.descripcion;
+
+  document.getElementById('modalVerCarrera').style.display = 'flex';
+}
+
+// Cerrar modal de vista
+document.getElementById('btnCerrarModalVerCarrera').addEventListener('click', () => {
+  document.getElementById('modalVerCarrera').style.display = 'none';
+});
+
+
+  // Al cargar la página, mostrar carreras existentes
+  async function cargarCarrerasFirebase() {
+    const querySnapshot = await getDocs(collection(db, "CARRERAS - Super Usuario"));
+    querySnapshot.forEach(doc => {
+      const datos = doc.data();
+      agregarCarreraVisual(datos);
+    });
+  }
+
+  cargarCarrerasFirebase();
+</script>
+
+
+</body>
+
+
 
 </body>
 </html>
