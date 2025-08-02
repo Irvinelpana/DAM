@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Carreras</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #d4f0f7, #a1e0f1);
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #d4f0f7, #a1e0f1);
+            padding: 20px 40px;
+            height: 100px;
+        }
+
+        .logo {
+            height: 70px;
+        }
+
+        .menu-button {
+            background-color: #1a4f72;
+            color: white;
+            padding: 12px 24px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .menu-button:hover {
+            background-color: #163d57;
+        }
+
+        .icons {
+            display: flex;
+            gap: 20px;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .container {
+            height: calc(100% - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        .career-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .career-item {
+            background: linear-gradient(to right, #6db3d0, #c0f0e8);
+            padding: 12px 24px;
+            width: 60%;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .career-item:hover {
+            transform: scale(1.02);
+            background: linear-gradient(to right, #3d8abf, #a0e0d0);
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-button {
+            background: linear-gradient(to right, #b2ebf2, #0288d1);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #03a9f4, #01579b);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="logounip1.png" alt="Logo Universidad" class="logo">
+        <button class="menu-button" onclick="window.location.href='menu-superusuario.html'">MENU</button>
+
+
+        <div class="icons">
+            &#8962; <!-- Casa --> &#128100; <!-- Usuario --> &#x2B07; <!-- Flecha abajo -->
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Carreras de la universidad</h2>
+        <div class="career-list">
+            <div class="career-item">Ing. Tecnologías de la información.</div>
+            <div class="career-item">Ing. En animación y efectos visuales.</div>
+            <div class="career-item">Ing. En biotecnologías.</div>
+            <div class="career-item">Ing. En datos e inteligencia artificial.</div>
+            <div class="career-item">Ing. En manufactura avanzada.</div>
+            <div class="career-item">Lic. En comercio internacional y aduanas.</div>
+        </div>
+        <div class="actions">
+            <button class="action-button">Agregar Carrera</button>
+            <button class="action-button">Editar Carrera</button>
+        </div>
+    </div>
+
+    <!-- Modal oculto al inicio -->
+<div id="modalCarrera" class="modal hidden">
+  <div class="modal-content">
+    <h2>Datos de la carrera</h2>
+    <p><strong>Nombre:</strong> <span id="nombreCarrera"></span></p>
+    <p><strong>Jefe:</strong> <span id="jefeCarrera"></span></p>
+    <p><strong>Ubicación:</strong> <span id="ubicacionCarrera"></span></p>
+    <p><strong>Descripción:</strong> <span id="descripcionCarrera"></span></p>
+    <button onclick="cerrarModal()">Salir</button>
+  </div>
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,193 @@
+body { 
+    margin: 0;
+    font-family: Arial, sans-serif;
+    
+    background: linear-gradient(to bottom, #d0e9f7, #ffffff);
+    text-align: center;
+}
+
+
+/* Imagen principal */
+.title_image {
+    width: 250px;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.title_image:hover {
+    transform: scale(1.1);
+}
+
+/* Imágenes debajo */
+.tiid1 {
+    width: 300px;
+    max-width: 90%;
+    margin: 0 100px 30px 0px;
+    position: relative;
+    top: -100px; /* eleva la imagen hacia arriba */
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    
+}
+
+
+.admin {
+    width: 300px;
+    max-width: 90%;
+    /* margin: 40px 20px; /* menos margen para que no se alejen tanto */
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    margin: 0 15px 30px 100px; /* ajusta el margen para centrar */
+}
+
+.tiid1:hover
+{
+    transform: scale(1.50);
+    transition: transform 0.3s ease-in-out;
+}
+.admin:hover {
+  transform: scale(1.35);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Botones generales */
+button {
+    background-color: white;
+    color: black;
+    border: 2px solid #cccccc;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.botoncorreoalluda::after {
+    content: " ✉️";
+}
+
+
+.botoninformacion::before {
+    content: "Información";
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Contenedor principal */
+.paguina.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* centra todo horizontalmente */
+    gap: 40px;            /* espacio vertical entre secciones */
+    padding: 20px;
+}
+
+/* Botón de inicio centrado */
+.boton-inicio {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.clasesyinformacion, .contactoycondiciones {
+    display: flex;
+    width: 100%;
+    max-width: 600px;       /* controla el ancho máximo */
+    margin: 20px auto;      /* centra horizontalmente y espacio vertical */
+    align-items: center;
+    justify-content: space-between;  /* uno a la izquierda, otro a la derecha */
+}
+
+/* Botones, si quieres que se vean parecidos */
+p {
+    margin: 20px 0;
+}
+
+#inicio {
+    display: none;
+}
+
+.activa {
+    display: block !important;
+}
+
+/* Oculta ambas páginas por defecto */
+#pag1, #pag2 {
+  display: none;
+}
+/* Muestra solo la página activa */
+#pag1.activa, #pag2.activa {
+  display: block;
+}
+
+
+
+
+/* estilo menu super ususario */
+.superusuario-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #d0e9f7);
+}
+
+.superusuario-menu {
+  width: 300px;
+  background: linear-gradient(to bottom, #ffffff, #a4dbf5);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.superusuario-menu h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 1rem 0 1rem 0;
+}
+
+.superusuario-menu .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.superusuario-menu button {
+  background-color: rgba(255, 255, 255, 0.8); /* blanco semitransparente */
+  border: 1px solid #ccc;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 260px; /* botón más largo, ajustable */
+  font-weight: bold;
+  margin: 0.5rem auto; /* centrado vertical y horizontal */
+  display: block; /* para que margin: auto funcione */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+
+.superusuario-menu button:hover {
+  background-color: #d4f1ff;
+  transform: scale(1.03);
+}
+
+
+
