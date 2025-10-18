@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyBubbleWidget extends StatelessWidget {
-  const MyBubbleWidget({super.key});
+  final String text;
+
+  const MyBubbleWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class MyBubbleWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              "Kiubole guapo",
+              text,
               style: TextStyle(color: colors.onSurface),
             ),
           ),
